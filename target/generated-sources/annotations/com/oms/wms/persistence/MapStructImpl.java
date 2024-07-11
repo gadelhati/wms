@@ -1,0 +1,484 @@
+package com.oms.wms.persistence;
+
+import com.oms.wms.persistence.model.City;
+import com.oms.wms.persistence.model.Country;
+import com.oms.wms.persistence.model.Delivery;
+import com.oms.wms.persistence.model.Order;
+import com.oms.wms.persistence.model.OrderItem;
+import com.oms.wms.persistence.model.Person;
+import com.oms.wms.persistence.model.Privilege;
+import com.oms.wms.persistence.model.Product;
+import com.oms.wms.persistence.model.Role;
+import com.oms.wms.persistence.model.State;
+import com.oms.wms.persistence.model.Stock;
+import com.oms.wms.persistence.model.User;
+import com.oms.wms.persistence.payload.request.DTORequestCity;
+import com.oms.wms.persistence.payload.request.DTORequestCountry;
+import com.oms.wms.persistence.payload.request.DTORequestDelivery;
+import com.oms.wms.persistence.payload.request.DTORequestOrder;
+import com.oms.wms.persistence.payload.request.DTORequestOrderItem;
+import com.oms.wms.persistence.payload.request.DTORequestPrivilege;
+import com.oms.wms.persistence.payload.request.DTORequestProduct;
+import com.oms.wms.persistence.payload.request.DTORequestRole;
+import com.oms.wms.persistence.payload.request.DTORequestState;
+import com.oms.wms.persistence.payload.request.DTORequestStock;
+import com.oms.wms.persistence.payload.request.DTORequestUser;
+import com.oms.wms.persistence.payload.response.DTOResponseCity;
+import com.oms.wms.persistence.payload.response.DTOResponseCountry;
+import com.oms.wms.persistence.payload.response.DTOResponseDelivery;
+import com.oms.wms.persistence.payload.response.DTOResponseOrder;
+import com.oms.wms.persistence.payload.response.DTOResponseOrderItem;
+import com.oms.wms.persistence.payload.response.DTOResponsePrivilege;
+import com.oms.wms.persistence.payload.response.DTOResponseProduct;
+import com.oms.wms.persistence.payload.response.DTOResponseRole;
+import com.oms.wms.persistence.payload.response.DTOResponseState;
+import com.oms.wms.persistence.payload.response.DTOResponseStock;
+import com.oms.wms.persistence.payload.response.DTOResponseUser;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.UUID;
+import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2024-07-11T18:11:49-0300",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 20.0.2 (Oracle Corporation)"
+)
+@Component
+public class MapStructImpl implements MapStruct {
+
+    @Override
+    public DTOResponseCity toDTO(City city) {
+        if ( city == null ) {
+            return null;
+        }
+
+        UUID id = null;
+        String code = null;
+        String name = null;
+        State state = null;
+
+        id = city.getId();
+        code = city.getCode();
+        name = city.getName();
+        state = city.getState();
+
+        DTOResponseCity dTOResponseCity = new DTOResponseCity( id, code, name, state );
+
+        return dTOResponseCity;
+    }
+
+    @Override
+    public DTOResponseCountry toDTO(Country country) {
+        if ( country == null ) {
+            return null;
+        }
+
+        UUID id = null;
+        String name = null;
+
+        id = country.getId();
+        name = country.getName();
+
+        DTOResponseCountry dTOResponseCountry = new DTOResponseCountry( id, name );
+
+        return dTOResponseCountry;
+    }
+
+    @Override
+    public DTOResponsePrivilege toDTO(Privilege privilege) {
+        if ( privilege == null ) {
+            return null;
+        }
+
+        UUID id = null;
+        String name = null;
+
+        id = privilege.getId();
+        name = privilege.getName();
+
+        DTOResponsePrivilege dTOResponsePrivilege = new DTOResponsePrivilege( id, name );
+
+        return dTOResponsePrivilege;
+    }
+
+    @Override
+    public DTOResponseState toDTO(State state) {
+        if ( state == null ) {
+            return null;
+        }
+
+        UUID id = null;
+        String code = null;
+        String name = null;
+        Country country = null;
+
+        id = state.getId();
+        code = state.getCode();
+        name = state.getName();
+        country = state.getCountry();
+
+        DTOResponseState dTOResponseState = new DTOResponseState( id, code, name, country );
+
+        return dTOResponseState;
+    }
+
+    @Override
+    public DTOResponseRole toDTO(Role role) {
+        if ( role == null ) {
+            return null;
+        }
+
+        UUID id = null;
+        String name = null;
+
+        id = role.getId();
+        name = role.getName();
+
+        DTOResponseRole dTOResponseRole = new DTOResponseRole( id, name );
+
+        return dTOResponseRole;
+    }
+
+    @Override
+    public DTOResponseUser toDTO(User user) {
+        if ( user == null ) {
+            return null;
+        }
+
+        Collection<Role> role = null;
+        UUID id = null;
+        String username = null;
+        String email = null;
+        String password = null;
+        Boolean active = null;
+
+        Collection<Role> collection = user.getRole();
+        if ( collection != null ) {
+            role = new ArrayList<Role>( collection );
+        }
+        id = user.getId();
+        username = user.getUsername();
+        email = user.getEmail();
+        password = user.getPassword();
+        active = user.getActive();
+
+        DTOResponseUser dTOResponseUser = new DTOResponseUser( id, username, email, password, active, role );
+
+        return dTOResponseUser;
+    }
+
+    @Override
+    public DTOResponseOrder toDTO(Order order) {
+        if ( order == null ) {
+            return null;
+        }
+
+        Collection<OrderItem> orderItem = null;
+        UUID id = null;
+        String category = null;
+        float totalCost = 0.0f;
+
+        Collection<OrderItem> collection = order.getOrderItem();
+        if ( collection != null ) {
+            orderItem = new ArrayList<OrderItem>( collection );
+        }
+        id = order.getId();
+        category = order.getCategory();
+        totalCost = order.getTotalCost();
+
+        Collection<Delivery> delivery = null;
+        Person seller = null;
+        Person buyer = null;
+        Stock stockSeller = null;
+        Stock stockBuyer = null;
+
+        DTOResponseOrder dTOResponseOrder = new DTOResponseOrder( id, category, totalCost, orderItem, delivery, seller, buyer, stockSeller, stockBuyer );
+
+        return dTOResponseOrder;
+    }
+
+    @Override
+    public DTOResponseOrderItem toDTO(OrderItem orderItem) {
+        if ( orderItem == null ) {
+            return null;
+        }
+
+        UUID id = null;
+        float unitPrice = 0.0f;
+        float discount = 0.0f;
+        int quantity = 0;
+        float totalCost = 0.0f;
+        Product product = null;
+
+        id = orderItem.getId();
+        unitPrice = orderItem.getUnitPrice();
+        discount = orderItem.getDiscount();
+        quantity = orderItem.getQuantity();
+        totalCost = orderItem.getTotalCost();
+        product = orderItem.getProduct();
+
+        DTOResponseOrderItem dTOResponseOrderItem = new DTOResponseOrderItem( id, unitPrice, discount, quantity, totalCost, product );
+
+        return dTOResponseOrderItem;
+    }
+
+    @Override
+    public DTOResponseStock toDTO(Stock stock) {
+        if ( stock == null ) {
+            return null;
+        }
+
+        UUID id = null;
+        int maximumBulk = 0;
+        int currentBulk = 0;
+
+        id = stock.getId();
+        maximumBulk = stock.getMaximumBulk();
+        currentBulk = stock.getCurrentBulk();
+
+        Collection<Order> orders = null;
+
+        DTOResponseStock dTOResponseStock = new DTOResponseStock( id, maximumBulk, currentBulk, orders );
+
+        return dTOResponseStock;
+    }
+
+    @Override
+    public DTOResponseProduct toDTO(Product product) {
+        if ( product == null ) {
+            return null;
+        }
+
+        UUID id = null;
+        String gtin = null;
+        String category = null;
+        String brand = null;
+        String model = null;
+        int minimumStock = 0;
+        int maximumStock = 0;
+        int reservedStock = 0;
+        int availableStock = 0;
+        int bulk = 0;
+
+        id = product.getId();
+        gtin = product.getGtin();
+        category = product.getCategory();
+        brand = product.getBrand();
+        model = product.getModel();
+        minimumStock = product.getMinimumStock();
+        maximumStock = product.getMaximumStock();
+        reservedStock = product.getReservedStock();
+        availableStock = product.getAvailableStock();
+        bulk = product.getBulk();
+
+        DTOResponseProduct dTOResponseProduct = new DTOResponseProduct( id, gtin, category, brand, model, minimumStock, maximumStock, reservedStock, availableStock, bulk );
+
+        return dTOResponseProduct;
+    }
+
+    @Override
+    public DTOResponseDelivery toDTO(Delivery delivery) {
+        if ( delivery == null ) {
+            return null;
+        }
+
+        UUID id = null;
+        String status = null;
+        LocalDateTime statusDate = null;
+
+        id = delivery.getId();
+        status = delivery.getStatus();
+        statusDate = delivery.getStatusDate();
+
+        DTOResponseDelivery dTOResponseDelivery = new DTOResponseDelivery( id, status, statusDate );
+
+        return dTOResponseDelivery;
+    }
+
+    @Override
+    public City toObject(DTORequestCity dtoRequestCity) {
+        if ( dtoRequestCity == null ) {
+            return null;
+        }
+
+        City city = new City();
+
+        city.setId( dtoRequestCity.getId() );
+        city.setCode( dtoRequestCity.getCode() );
+        city.setName( dtoRequestCity.getName() );
+        city.setState( dtoRequestCity.getState() );
+
+        return city;
+    }
+
+    @Override
+    public Country toObject(DTORequestCountry dtoRequestCountry) {
+        if ( dtoRequestCountry == null ) {
+            return null;
+        }
+
+        Country country = new Country();
+
+        country.setId( dtoRequestCountry.getId() );
+        country.setName( dtoRequestCountry.getName() );
+
+        return country;
+    }
+
+    @Override
+    public Privilege toObject(DTORequestPrivilege dtoRequestPrivilege) {
+        if ( dtoRequestPrivilege == null ) {
+            return null;
+        }
+
+        Privilege privilege = new Privilege();
+
+        privilege.setId( dtoRequestPrivilege.getId() );
+        privilege.setName( dtoRequestPrivilege.getName() );
+
+        return privilege;
+    }
+
+    @Override
+    public State toObject(DTORequestState dtoRequestState) {
+        if ( dtoRequestState == null ) {
+            return null;
+        }
+
+        State state = new State();
+
+        state.setId( dtoRequestState.getId() );
+        state.setCode( dtoRequestState.getCode() );
+        state.setName( dtoRequestState.getName() );
+        state.setCountry( dtoRequestState.getCountry() );
+
+        return state;
+    }
+
+    @Override
+    public Role toObject(DTORequestRole dtoRequestRole) {
+        if ( dtoRequestRole == null ) {
+            return null;
+        }
+
+        Role role = new Role();
+
+        role.setId( dtoRequestRole.getId() );
+        role.setName( dtoRequestRole.getName() );
+
+        return role;
+    }
+
+    @Override
+    public User toObject(DTORequestUser dtoRequestUser) {
+        if ( dtoRequestUser == null ) {
+            return null;
+        }
+
+        User user = new User();
+
+        user.setId( dtoRequestUser.getId() );
+        user.setUsername( dtoRequestUser.getUsername() );
+        user.setEmail( dtoRequestUser.getEmail() );
+        user.setPassword( dtoRequestUser.getPassword() );
+        user.setActive( dtoRequestUser.isActive() );
+        Collection<Role> collection = dtoRequestUser.getRole();
+        if ( collection != null ) {
+            user.setRole( new ArrayList<Role>( collection ) );
+        }
+
+        return user;
+    }
+
+    @Override
+    public Order toObject(DTORequestOrder dtoRequestOrder) {
+        if ( dtoRequestOrder == null ) {
+            return null;
+        }
+
+        Order order = new Order();
+
+        order.setId( dtoRequestOrder.getId() );
+        order.setCategory( dtoRequestOrder.getCategory() );
+        order.setTotalCost( dtoRequestOrder.getTotalCost() );
+        Collection<OrderItem> collection = dtoRequestOrder.getOrderItem();
+        if ( collection != null ) {
+            order.setOrderItem( new ArrayList<OrderItem>( collection ) );
+        }
+
+        return order;
+    }
+
+    @Override
+    public OrderItem toObject(DTORequestOrderItem dtoRequestOrderItem) {
+        if ( dtoRequestOrderItem == null ) {
+            return null;
+        }
+
+        OrderItem orderItem = new OrderItem();
+
+        orderItem.setId( dtoRequestOrderItem.getId() );
+        orderItem.setUnitPrice( dtoRequestOrderItem.getUnitPrice() );
+        orderItem.setDiscount( dtoRequestOrderItem.getDiscount() );
+        orderItem.setQuantity( dtoRequestOrderItem.getQuantity() );
+        orderItem.setTotalCost( dtoRequestOrderItem.getTotalCost() );
+        orderItem.setProduct( dtoRequestOrderItem.getProduct() );
+
+        return orderItem;
+    }
+
+    @Override
+    public Stock toObject(DTORequestStock dtoRequestStock) {
+        if ( dtoRequestStock == null ) {
+            return null;
+        }
+
+        Stock stock = new Stock();
+
+        stock.setId( dtoRequestStock.getId() );
+        stock.setMaximumBulk( dtoRequestStock.getMaximumBulk() );
+        stock.setCurrentBulk( dtoRequestStock.getCurrentBulk() );
+
+        return stock;
+    }
+
+    @Override
+    public Product toObject(DTORequestProduct dtoRequestProduct) {
+        if ( dtoRequestProduct == null ) {
+            return null;
+        }
+
+        Product product = new Product();
+
+        product.setId( dtoRequestProduct.getId() );
+        product.setGtin( dtoRequestProduct.getGtin() );
+        product.setCategory( dtoRequestProduct.getCategory() );
+        product.setBrand( dtoRequestProduct.getBrand() );
+        product.setModel( dtoRequestProduct.getModel() );
+        product.setMinimumStock( dtoRequestProduct.getMinimumStock() );
+        product.setMaximumStock( dtoRequestProduct.getMaximumStock() );
+        product.setReservedStock( dtoRequestProduct.getReservedStock() );
+        product.setAvailableStock( dtoRequestProduct.getAvailableStock() );
+        product.setBulk( dtoRequestProduct.getBulk() );
+
+        return product;
+    }
+
+    @Override
+    public Delivery toObject(DTORequestDelivery dtoRequestDelivery) {
+        if ( dtoRequestDelivery == null ) {
+            return null;
+        }
+
+        Delivery delivery = new Delivery();
+
+        delivery.setId( dtoRequestDelivery.getId() );
+        delivery.setStatus( dtoRequestDelivery.getStatus() );
+        delivery.setStatusDate( dtoRequestDelivery.getStatusDate() );
+
+        return delivery;
+    }
+}
