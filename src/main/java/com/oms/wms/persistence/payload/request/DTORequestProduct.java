@@ -1,5 +1,10 @@
 package com.oms.wms.persistence.payload.request;
 
+import com.oms.wms.persistence.model.Lot;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -10,6 +15,7 @@ import java.util.UUID;
 public class DTORequestProduct {
 
     private UUID id;
+    private String sku;
     private String gtin;
     @NotNull(message = "{not.null}") @NotBlank(message = "{not.blank}")
     private String category;
@@ -20,4 +26,10 @@ public class DTORequestProduct {
     private int reservedStock;
     private int availableStock;
     private int bulk;
+    private int grossWeightMeasurement;//unidade de medida do peso bruto
+    private int netWeightMeasurement;//unidade de medida do peso líquido
+    private int grossWeight;//peso bruto
+    private int netWeight;//peso líquido
+    private String url;//image
+    private Lot lot;
 }

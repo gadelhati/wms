@@ -12,5 +12,5 @@ public class DTORequestStock {
     private UUID id;
     private int maximumBulk;
     private int currentBulk;
-    private Collection<Order> orders;
+    private Collection<Order> order;
 }

@@ -13,5 +13,5 @@ public class DTOResponseStock {
     private UUID id;
     private int maximumBulk;
     private int currentBulk;
-    private Collection<Order> orders;
+    private Collection<Order> order;
 }

@@ -17,6 +17,7 @@ CRUD service from a datatable.
 
 ### Roadmap
 #### in development
+- [ ] product don't filter string
 - [ ] @PostFilter(hasPermission('')), hasAuthority('Admin')
 - [ ] search in one or all of stocks
 - [ ] calculate: regular bulk (volume atual)

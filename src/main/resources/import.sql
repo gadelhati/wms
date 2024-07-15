@@ -6060,7 +6060,7 @@ INSERT INTO wms.lot(
 -- POPULING product
 INSERT INTO wms.product(
 	available_stock, bulk, gross_weight, gross_weight_measurement, maximum_stock, minimum_stock, net_weight, net_weight_measurement, reserved_stock, created_at, updated_at, created_by, id, lot, modified_by, brand, category, cest, cfop, gtin, model, ncm, sku, url)
-	VALUES (1, 1, 1, 1, 1, 1, 1, 1, 1, NOW(), NOW(), null, 'dc44029c-d76e-4926-900f-15910fb3de58', 'dbb9e791-67ee-44f1-a6a3-0bc906b3771d', null, '?', '?', '?', '?', '?', '?', '?', '?', 'http://image.com') ON CONFLICT DO NOTHING;
+	VALUES (1, 1, 1, 1, 1, 1, 1, 1, 1, NOW(), NOW(), null, 'dc44029c-d76e-4926-900f-15910fb3de58', 'dbb9e791-67ee-44f1-a6a3-0bc906b3771d', null, null, '', '', '', '', '', '', '', 'http://image.com') ON CONFLICT DO NOTHING;
 
 -- POPULING order_item
 INSERT INTO wms.order_item(discount, quantity, unit_price, created_at, updated_at, created_by, id, modified_by, product) VALUES (0, 1, 10.00, NOW(), NOW(), null, '50d64352-6d0f-430c-95bc-3098a8a168ab', null, 'dc44029c-d76e-4926-900f-15910fb3de58') ON CONFLICT DO NOTHING;

@@ -1,8 +1,10 @@
 package com.oms.wms.persistence;
 
+import com.oms.wms.persistence.model.Address;
 import com.oms.wms.persistence.model.City;
 import com.oms.wms.persistence.model.Country;
 import com.oms.wms.persistence.model.Delivery;
+import com.oms.wms.persistence.model.Lot;
 import com.oms.wms.persistence.model.Order;
 import com.oms.wms.persistence.model.OrderItem;
 import com.oms.wms.persistence.model.Person;
@@ -12,22 +14,28 @@ import com.oms.wms.persistence.model.Role;
 import com.oms.wms.persistence.model.State;
 import com.oms.wms.persistence.model.Stock;
 import com.oms.wms.persistence.model.User;
+import com.oms.wms.persistence.payload.request.DTORequestAddress;
 import com.oms.wms.persistence.payload.request.DTORequestCity;
 import com.oms.wms.persistence.payload.request.DTORequestCountry;
 import com.oms.wms.persistence.payload.request.DTORequestDelivery;
+import com.oms.wms.persistence.payload.request.DTORequestLot;
 import com.oms.wms.persistence.payload.request.DTORequestOrder;
 import com.oms.wms.persistence.payload.request.DTORequestOrderItem;
+import com.oms.wms.persistence.payload.request.DTORequestPerson;
 import com.oms.wms.persistence.payload.request.DTORequestPrivilege;
 import com.oms.wms.persistence.payload.request.DTORequestProduct;
 import com.oms.wms.persistence.payload.request.DTORequestRole;
 import com.oms.wms.persistence.payload.request.DTORequestState;
 import com.oms.wms.persistence.payload.request.DTORequestStock;
 import com.oms.wms.persistence.payload.request.DTORequestUser;
+import com.oms.wms.persistence.payload.response.DTOResponseAddress;
 import com.oms.wms.persistence.payload.response.DTOResponseCity;
 import com.oms.wms.persistence.payload.response.DTOResponseCountry;
 import com.oms.wms.persistence.payload.response.DTOResponseDelivery;
+import com.oms.wms.persistence.payload.response.DTOResponseLot;
 import com.oms.wms.persistence.payload.response.DTOResponseOrder;
 import com.oms.wms.persistence.payload.response.DTOResponseOrderItem;
+import com.oms.wms.persistence.payload.response.DTOResponsePerson;
 import com.oms.wms.persistence.payload.response.DTOResponsePrivilege;
 import com.oms.wms.persistence.payload.response.DTOResponseProduct;
 import com.oms.wms.persistence.payload.response.DTOResponseRole;
@@ -43,11 +51,44 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-07-11T18:11:49-0300",
+    date = "2024-07-13T23:32:06-0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 20.0.2 (Oracle Corporation)"
 )
 @Component
 public class MapStructImpl implements MapStruct {
+
+    @Override
+    public DTOResponseAddress toDTO(Address address) {
+        if ( address == null ) {
+            return null;
+        }
+
+        UUID id = null;
+        String cepNumber = null;
+        String cepCategory = null;
+        String cepSubCategory = null;
+        String neighborhood = null;
+        String address1 = null;
+        String complement = null;
+        String iBGECode = null;
+        City city = null;
+        Person person = null;
+
+        id = address.getId();
+        cepNumber = address.getCepNumber();
+        cepCategory = address.getCepCategory();
+        cepSubCategory = address.getCepSubCategory();
+        neighborhood = address.getNeighborhood();
+        address1 = address.getAddress();
+        complement = address.getComplement();
+        iBGECode = address.getIBGECode();
+        city = address.getCity();
+        person = address.getPerson();
+
+        DTOResponseAddress dTOResponseAddress = new DTOResponseAddress( id, cepNumber, cepCategory, cepSubCategory, neighborhood, address1, complement, iBGECode, city, person );
+
+        return dTOResponseAddress;
+    }
 
     @Override
     public DTOResponseCity toDTO(City city) {
@@ -88,86 +129,43 @@ public class MapStructImpl implements MapStruct {
     }
 
     @Override
-    public DTOResponsePrivilege toDTO(Privilege privilege) {
-        if ( privilege == null ) {
+    public DTOResponseDelivery toDTO(Delivery delivery) {
+        if ( delivery == null ) {
             return null;
         }
 
         UUID id = null;
-        String name = null;
+        String status = null;
+        LocalDateTime statusDate = null;
 
-        id = privilege.getId();
-        name = privilege.getName();
+        id = delivery.getId();
+        status = delivery.getStatus();
+        statusDate = delivery.getStatusDate();
 
-        DTOResponsePrivilege dTOResponsePrivilege = new DTOResponsePrivilege( id, name );
+        DTOResponseDelivery dTOResponseDelivery = new DTOResponseDelivery( id, status, statusDate );
 
-        return dTOResponsePrivilege;
+        return dTOResponseDelivery;
     }
 
     @Override
-    public DTOResponseState toDTO(State state) {
-        if ( state == null ) {
+    public DTOResponseLot toDTO(Lot lot) {
+        if ( lot == null ) {
             return null;
         }
 
         UUID id = null;
-        String code = null;
-        String name = null;
-        Country country = null;
+        String number = null;
+        LocalDateTime manufacturing = null;
+        LocalDateTime overdue = null;
 
-        id = state.getId();
-        code = state.getCode();
-        name = state.getName();
-        country = state.getCountry();
+        id = lot.getId();
+        number = lot.getNumber();
+        manufacturing = lot.getManufacturing();
+        overdue = lot.getOverdue();
 
-        DTOResponseState dTOResponseState = new DTOResponseState( id, code, name, country );
+        DTOResponseLot dTOResponseLot = new DTOResponseLot( id, number, manufacturing, overdue );
 
-        return dTOResponseState;
-    }
-
-    @Override
-    public DTOResponseRole toDTO(Role role) {
-        if ( role == null ) {
-            return null;
-        }
-
-        UUID id = null;
-        String name = null;
-
-        id = role.getId();
-        name = role.getName();
-
-        DTOResponseRole dTOResponseRole = new DTOResponseRole( id, name );
-
-        return dTOResponseRole;
-    }
-
-    @Override
-    public DTOResponseUser toDTO(User user) {
-        if ( user == null ) {
-            return null;
-        }
-
-        Collection<Role> role = null;
-        UUID id = null;
-        String username = null;
-        String email = null;
-        String password = null;
-        Boolean active = null;
-
-        Collection<Role> collection = user.getRole();
-        if ( collection != null ) {
-            role = new ArrayList<Role>( collection );
-        }
-        id = user.getId();
-        username = user.getUsername();
-        email = user.getEmail();
-        password = user.getPassword();
-        active = user.getActive();
-
-        DTOResponseUser dTOResponseUser = new DTOResponseUser( id, username, email, password, active, role );
-
-        return dTOResponseUser;
+        return dTOResponseLot;
     }
 
     @Override
@@ -226,24 +224,53 @@ public class MapStructImpl implements MapStruct {
     }
 
     @Override
-    public DTOResponseStock toDTO(Stock stock) {
-        if ( stock == null ) {
+    public DTOResponsePerson toDTO(Person person) {
+        if ( person == null ) {
+            return null;
+        }
+
+        Collection<String> telephone = null;
+        Collection<Address> address = null;
+        UUID id = null;
+        String name = null;
+        LocalDateTime birth = null;
+        String email = null;
+        Country country = null;
+
+        Collection<String> collection = person.getTelephone();
+        if ( collection != null ) {
+            telephone = new ArrayList<String>( collection );
+        }
+        Collection<Address> collection1 = person.getAddress();
+        if ( collection1 != null ) {
+            address = new ArrayList<Address>( collection1 );
+        }
+        id = person.getId();
+        name = person.getName();
+        birth = person.getBirth();
+        email = person.getEmail();
+        country = person.getCountry();
+
+        DTOResponsePerson dTOResponsePerson = new DTOResponsePerson( id, name, birth, email, telephone, country, address );
+
+        return dTOResponsePerson;
+    }
+
+    @Override
+    public DTOResponsePrivilege toDTO(Privilege privilege) {
+        if ( privilege == null ) {
             return null;
         }
 
         UUID id = null;
-        int maximumBulk = 0;
-        int currentBulk = 0;
+        String name = null;
 
-        id = stock.getId();
-        maximumBulk = stock.getMaximumBulk();
-        currentBulk = stock.getCurrentBulk();
+        id = privilege.getId();
+        name = privilege.getName();
 
-        Collection<Order> orders = null;
+        DTOResponsePrivilege dTOResponsePrivilege = new DTOResponsePrivilege( id, name );
 
-        DTOResponseStock dTOResponseStock = new DTOResponseStock( id, maximumBulk, currentBulk, orders );
-
-        return dTOResponseStock;
+        return dTOResponsePrivilege;
     }
 
     @Override
@@ -253,6 +280,7 @@ public class MapStructImpl implements MapStruct {
         }
 
         UUID id = null;
+        String sku = null;
         String gtin = null;
         String category = null;
         String brand = null;
@@ -262,8 +290,15 @@ public class MapStructImpl implements MapStruct {
         int reservedStock = 0;
         int availableStock = 0;
         int bulk = 0;
+        int grossWeightMeasurement = 0;
+        int netWeightMeasurement = 0;
+        int grossWeight = 0;
+        int netWeight = 0;
+        String url = null;
+        Lot lot = null;
 
         id = product.getId();
+        sku = product.getSku();
         gtin = product.getGtin();
         category = product.getCategory();
         brand = product.getBrand();
@@ -273,29 +308,128 @@ public class MapStructImpl implements MapStruct {
         reservedStock = product.getReservedStock();
         availableStock = product.getAvailableStock();
         bulk = product.getBulk();
+        grossWeightMeasurement = product.getGrossWeightMeasurement();
+        netWeightMeasurement = product.getNetWeightMeasurement();
+        grossWeight = product.getGrossWeight();
+        netWeight = product.getNetWeight();
+        url = product.getUrl();
+        lot = product.getLot();
 
-        DTOResponseProduct dTOResponseProduct = new DTOResponseProduct( id, gtin, category, brand, model, minimumStock, maximumStock, reservedStock, availableStock, bulk );
+        DTOResponseProduct dTOResponseProduct = new DTOResponseProduct( id, sku, gtin, category, brand, model, minimumStock, maximumStock, reservedStock, availableStock, bulk, grossWeightMeasurement, netWeightMeasurement, grossWeight, netWeight, url, lot );
 
         return dTOResponseProduct;
     }
 
     @Override
-    public DTOResponseDelivery toDTO(Delivery delivery) {
-        if ( delivery == null ) {
+    public DTOResponseRole toDTO(Role role) {
+        if ( role == null ) {
             return null;
         }
 
         UUID id = null;
-        String status = null;
-        LocalDateTime statusDate = null;
+        String name = null;
 
-        id = delivery.getId();
-        status = delivery.getStatus();
-        statusDate = delivery.getStatusDate();
+        id = role.getId();
+        name = role.getName();
 
-        DTOResponseDelivery dTOResponseDelivery = new DTOResponseDelivery( id, status, statusDate );
+        DTOResponseRole dTOResponseRole = new DTOResponseRole( id, name );
 
-        return dTOResponseDelivery;
+        return dTOResponseRole;
+    }
+
+    @Override
+    public DTOResponseState toDTO(State state) {
+        if ( state == null ) {
+            return null;
+        }
+
+        UUID id = null;
+        String code = null;
+        String name = null;
+        Country country = null;
+
+        id = state.getId();
+        code = state.getCode();
+        name = state.getName();
+        country = state.getCountry();
+
+        DTOResponseState dTOResponseState = new DTOResponseState( id, code, name, country );
+
+        return dTOResponseState;
+    }
+
+    @Override
+    public DTOResponseStock toDTO(Stock stock) {
+        if ( stock == null ) {
+            return null;
+        }
+
+        Collection<Order> order = null;
+        UUID id = null;
+        int maximumBulk = 0;
+        int currentBulk = 0;
+
+        Collection<Order> collection = stock.getOrder();
+        if ( collection != null ) {
+            order = new ArrayList<Order>( collection );
+        }
+        id = stock.getId();
+        maximumBulk = stock.getMaximumBulk();
+        currentBulk = stock.getCurrentBulk();
+
+        DTOResponseStock dTOResponseStock = new DTOResponseStock( id, maximumBulk, currentBulk, order );
+
+        return dTOResponseStock;
+    }
+
+    @Override
+    public DTOResponseUser toDTO(User user) {
+        if ( user == null ) {
+            return null;
+        }
+
+        Collection<Role> role = null;
+        UUID id = null;
+        String username = null;
+        String email = null;
+        String password = null;
+        Boolean active = null;
+
+        Collection<Role> collection = user.getRole();
+        if ( collection != null ) {
+            role = new ArrayList<Role>( collection );
+        }
+        id = user.getId();
+        username = user.getUsername();
+        email = user.getEmail();
+        password = user.getPassword();
+        active = user.getActive();
+
+        DTOResponseUser dTOResponseUser = new DTOResponseUser( id, username, email, password, active, role );
+
+        return dTOResponseUser;
+    }
+
+    @Override
+    public Address toObject(DTORequestAddress dtoRequestAddress) {
+        if ( dtoRequestAddress == null ) {
+            return null;
+        }
+
+        Address address = new Address();
+
+        address.setId( dtoRequestAddress.getId() );
+        address.setCepNumber( dtoRequestAddress.getCepNumber() );
+        address.setCepCategory( dtoRequestAddress.getCepCategory() );
+        address.setCepSubCategory( dtoRequestAddress.getCepSubCategory() );
+        address.setNeighborhood( dtoRequestAddress.getNeighborhood() );
+        address.setAddress( dtoRequestAddress.getAddress() );
+        address.setComplement( dtoRequestAddress.getComplement() );
+        address.setIBGECode( dtoRequestAddress.getIBGECode() );
+        address.setCity( dtoRequestAddress.getCity() );
+        address.setPerson( dtoRequestAddress.getPerson() );
+
+        return address;
     }
 
     @Override
@@ -329,68 +463,34 @@ public class MapStructImpl implements MapStruct {
     }
 
     @Override
-    public Privilege toObject(DTORequestPrivilege dtoRequestPrivilege) {
-        if ( dtoRequestPrivilege == null ) {
+    public Delivery toObject(DTORequestDelivery dtoRequestDelivery) {
+        if ( dtoRequestDelivery == null ) {
             return null;
         }
 
-        Privilege privilege = new Privilege();
+        Delivery delivery = new Delivery();
 
-        privilege.setId( dtoRequestPrivilege.getId() );
-        privilege.setName( dtoRequestPrivilege.getName() );
+        delivery.setId( dtoRequestDelivery.getId() );
+        delivery.setStatus( dtoRequestDelivery.getStatus() );
+        delivery.setStatusDate( dtoRequestDelivery.getStatusDate() );
 
-        return privilege;
+        return delivery;
     }
 
     @Override
-    public State toObject(DTORequestState dtoRequestState) {
-        if ( dtoRequestState == null ) {
+    public Lot toObject(DTORequestLot dtoRequestLot) {
+        if ( dtoRequestLot == null ) {
             return null;
         }
 
-        State state = new State();
+        Lot lot = new Lot();
 
-        state.setId( dtoRequestState.getId() );
-        state.setCode( dtoRequestState.getCode() );
-        state.setName( dtoRequestState.getName() );
-        state.setCountry( dtoRequestState.getCountry() );
+        lot.setId( dtoRequestLot.getId() );
+        lot.setNumber( dtoRequestLot.getNumber() );
+        lot.setManufacturing( dtoRequestLot.getManufacturing() );
+        lot.setOverdue( dtoRequestLot.getOverdue() );
 
-        return state;
-    }
-
-    @Override
-    public Role toObject(DTORequestRole dtoRequestRole) {
-        if ( dtoRequestRole == null ) {
-            return null;
-        }
-
-        Role role = new Role();
-
-        role.setId( dtoRequestRole.getId() );
-        role.setName( dtoRequestRole.getName() );
-
-        return role;
-    }
-
-    @Override
-    public User toObject(DTORequestUser dtoRequestUser) {
-        if ( dtoRequestUser == null ) {
-            return null;
-        }
-
-        User user = new User();
-
-        user.setId( dtoRequestUser.getId() );
-        user.setUsername( dtoRequestUser.getUsername() );
-        user.setEmail( dtoRequestUser.getEmail() );
-        user.setPassword( dtoRequestUser.getPassword() );
-        user.setActive( dtoRequestUser.isActive() );
-        Collection<Role> collection = dtoRequestUser.getRole();
-        if ( collection != null ) {
-            user.setRole( new ArrayList<Role>( collection ) );
-        }
-
-        return user;
+        return lot;
     }
 
     @Override
@@ -431,18 +531,42 @@ public class MapStructImpl implements MapStruct {
     }
 
     @Override
-    public Stock toObject(DTORequestStock dtoRequestStock) {
-        if ( dtoRequestStock == null ) {
+    public Person toObject(DTORequestPerson dtoRequestPerson) {
+        if ( dtoRequestPerson == null ) {
             return null;
         }
 
-        Stock stock = new Stock();
+        Person person = new Person();
 
-        stock.setId( dtoRequestStock.getId() );
-        stock.setMaximumBulk( dtoRequestStock.getMaximumBulk() );
-        stock.setCurrentBulk( dtoRequestStock.getCurrentBulk() );
+        person.setId( dtoRequestPerson.getId() );
+        person.setName( dtoRequestPerson.getName() );
+        person.setBirth( dtoRequestPerson.getBirth() );
+        person.setEmail( dtoRequestPerson.getEmail() );
+        Collection<String> collection = dtoRequestPerson.getTelephone();
+        if ( collection != null ) {
+            person.setTelephone( new ArrayList<String>( collection ) );
+        }
+        person.setCountry( dtoRequestPerson.getCountry() );
+        Collection<Address> collection1 = dtoRequestPerson.getAddress();
+        if ( collection1 != null ) {
+            person.setAddress( new ArrayList<Address>( collection1 ) );
+        }
 
-        return stock;
+        return person;
+    }
+
+    @Override
+    public Privilege toObject(DTORequestPrivilege dtoRequestPrivilege) {
+        if ( dtoRequestPrivilege == null ) {
+            return null;
+        }
+
+        Privilege privilege = new Privilege();
+
+        privilege.setId( dtoRequestPrivilege.getId() );
+        privilege.setName( dtoRequestPrivilege.getName() );
+
+        return privilege;
     }
 
     @Override
@@ -454,6 +578,7 @@ public class MapStructImpl implements MapStruct {
         Product product = new Product();
 
         product.setId( dtoRequestProduct.getId() );
+        product.setSku( dtoRequestProduct.getSku() );
         product.setGtin( dtoRequestProduct.getGtin() );
         product.setCategory( dtoRequestProduct.getCategory() );
         product.setBrand( dtoRequestProduct.getBrand() );
@@ -463,22 +588,83 @@ public class MapStructImpl implements MapStruct {
         product.setReservedStock( dtoRequestProduct.getReservedStock() );
         product.setAvailableStock( dtoRequestProduct.getAvailableStock() );
         product.setBulk( dtoRequestProduct.getBulk() );
+        product.setGrossWeightMeasurement( dtoRequestProduct.getGrossWeightMeasurement() );
+        product.setNetWeightMeasurement( dtoRequestProduct.getNetWeightMeasurement() );
+        product.setGrossWeight( dtoRequestProduct.getGrossWeight() );
+        product.setNetWeight( dtoRequestProduct.getNetWeight() );
+        product.setUrl( dtoRequestProduct.getUrl() );
+        product.setLot( dtoRequestProduct.getLot() );
 
         return product;
     }
 
     @Override
-    public Delivery toObject(DTORequestDelivery dtoRequestDelivery) {
-        if ( dtoRequestDelivery == null ) {
+    public Role toObject(DTORequestRole dtoRequestRole) {
+        if ( dtoRequestRole == null ) {
             return null;
         }
 
-        Delivery delivery = new Delivery();
+        Role role = new Role();
 
-        delivery.setId( dtoRequestDelivery.getId() );
-        delivery.setStatus( dtoRequestDelivery.getStatus() );
-        delivery.setStatusDate( dtoRequestDelivery.getStatusDate() );
+        role.setId( dtoRequestRole.getId() );
+        role.setName( dtoRequestRole.getName() );
 
-        return delivery;
+        return role;
+    }
+
+    @Override
+    public State toObject(DTORequestState dtoRequestState) {
+        if ( dtoRequestState == null ) {
+            return null;
+        }
+
+        State state = new State();
+
+        state.setId( dtoRequestState.getId() );
+        state.setCode( dtoRequestState.getCode() );
+        state.setName( dtoRequestState.getName() );
+        state.setCountry( dtoRequestState.getCountry() );
+
+        return state;
+    }
+
+    @Override
+    public Stock toObject(DTORequestStock dtoRequestStock) {
+        if ( dtoRequestStock == null ) {
+            return null;
+        }
+
+        Stock stock = new Stock();
+
+        stock.setId( dtoRequestStock.getId() );
+        stock.setMaximumBulk( dtoRequestStock.getMaximumBulk() );
+        stock.setCurrentBulk( dtoRequestStock.getCurrentBulk() );
+        Collection<Order> collection = dtoRequestStock.getOrder();
+        if ( collection != null ) {
+            stock.setOrder( new ArrayList<Order>( collection ) );
+        }
+
+        return stock;
+    }
+
+    @Override
+    public User toObject(DTORequestUser dtoRequestUser) {
+        if ( dtoRequestUser == null ) {
+            return null;
+        }
+
+        User user = new User();
+
+        user.setId( dtoRequestUser.getId() );
+        user.setUsername( dtoRequestUser.getUsername() );
+        user.setEmail( dtoRequestUser.getEmail() );
+        user.setPassword( dtoRequestUser.getPassword() );
+        user.setActive( dtoRequestUser.isActive() );
+        Collection<Role> collection = dtoRequestUser.getRole();
+        if ( collection != null ) {
+            user.setRole( new ArrayList<Role>( collection ) );
+        }
+
+        return user;
     }
 }

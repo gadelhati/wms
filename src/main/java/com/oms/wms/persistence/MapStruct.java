@@ -13,27 +13,33 @@ import org.mapstruct.factory.Mappers;
 public interface MapStruct {
 
     MapStruct MAPPER = Mappers.getMapper(MapStruct.class);
+    DTOResponseAddress toDTO(Address address);
     DTOResponseCity toDTO(City city);
     DTOResponseCountry toDTO(Country country);
-    DTOResponsePrivilege toDTO(Privilege privilege);
-    DTOResponseState toDTO(State state);
-    DTOResponseRole toDTO(Role role);
-    DTOResponseUser toDTO(User user);
+    DTOResponseDelivery toDTO(Delivery delivery);
+    DTOResponseLot toDTO(Lot lot);
     DTOResponseOrder toDTO(Order order);
     DTOResponseOrderItem toDTO(OrderItem orderItem);
-    DTOResponseStock toDTO(Stock stock);
+    DTOResponsePerson toDTO(Person person);
+    DTOResponsePrivilege toDTO(Privilege privilege);
     DTOResponseProduct toDTO(Product product);
-    DTOResponseDelivery toDTO(Delivery delivery);
+    DTOResponseRole toDTO(Role role);
+    DTOResponseState toDTO(State state);
+    DTOResponseStock toDTO(Stock stock);
+    DTOResponseUser toDTO(User user);
 
+    Address toObject(DTORequestAddress dtoRequestAddress);
     City toObject(DTORequestCity dtoRequestCity);
     Country toObject(DTORequestCountry dtoRequestCountry);
-    Privilege toObject(DTORequestPrivilege dtoRequestPrivilege);
-    State toObject(DTORequestState dtoRequestState);
-    Role toObject(DTORequestRole dtoRequestRole);
-    User toObject(DTORequestUser dtoRequestUser);
+    Delivery toObject(DTORequestDelivery dtoRequestDelivery);
+    Lot toObject(DTORequestLot dtoRequestLot);
     Order toObject(DTORequestOrder dtoRequestOrder);
     OrderItem toObject(DTORequestOrderItem dtoRequestOrderItem);
-    Stock toObject(DTORequestStock dtoRequestStock);
+    Person toObject(DTORequestPerson dtoRequestPerson);
+    Privilege toObject(DTORequestPrivilege dtoRequestPrivilege);
     Product toObject(DTORequestProduct dtoRequestProduct);
-    Delivery toObject(DTORequestDelivery dtoRequestDelivery);
+    Role toObject(DTORequestRole dtoRequestRole);
+    State toObject(DTORequestState dtoRequestState);
+    Stock toObject(DTORequestStock dtoRequestStock);
+    User toObject(DTORequestUser dtoRequestUser);
 }
