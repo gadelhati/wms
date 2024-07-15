@@ -27,9 +27,10 @@ public class Order extends GenericAuditEntity {
 //    private Collection<Delivery> delivery;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "addressSeller", nullable = false)
-    private Address addressSeller;
+    @JoinColumn(name = "stock", nullable = false)
+    private Stock stock;//local, internal entity
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "addressBuyer", nullable = false)
-    private Address addressBuyer;
+    @JoinColumn(name = "person", nullable = false)
+    private Person person;//[PURCHASE|SALE]owner: external entity; [TRANSFER]holder: internal entity
+
 }
