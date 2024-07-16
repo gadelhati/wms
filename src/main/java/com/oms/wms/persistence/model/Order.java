@@ -10,6 +10,7 @@ import org.hibernate.envers.Audited;
 
 import java.util.Collection;
 
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Order extends GenericAuditEntity {
 
@@ -21,16 +22,13 @@ public class Order extends GenericAuditEntity {
     @JoinTable(name = "order_orderItems", joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "orderItem_id", referencedColumnName = "id"))
     private Collection<OrderItem> orderItem;
-//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-//    @JoinTable(name = "order_deliveries", joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"),
-//            inverseJoinColumns = @JoinColumn(name = "delivery_id", referencedColumnName = "id"))
-//    private Collection<Delivery> delivery;
-
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "stock", nullable = false)
-    private Stock stock;//local, internal entity
+    private Stock stock;
+    //local: internal entity stock origin
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "person", nullable = false)
-    private Person person;//[PURCHASE|SALE]owner: external entity; [TRANSFER]holder: internal entity
-
+    private Person person;
+    //[PURCHASE|SALE] owner: external entity
+    //[TRANSFER] holder: internal entity
 }
