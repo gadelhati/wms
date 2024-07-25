@@ -13,6 +13,9 @@ public class DTORequestItem {
     private UUID id;
     private String sku;
     private String gtin;
+    private String ncm;
+    private String cest;
+    private String cfop;
     @NotNull(message = "{not.null}") @NotBlank(message = "{not.blank}")
     private String category;
     private String brand;

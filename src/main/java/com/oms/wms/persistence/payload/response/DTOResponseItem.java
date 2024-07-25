@@ -12,6 +12,9 @@ public class DTOResponseItem {
     private UUID id;
     private String sku;
     private String gtin;
+    private String ncm;
+    private String cest;
+    private String cfop;
     private String category;
     private String brand;
     private String model;

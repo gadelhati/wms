@@ -17,11 +17,8 @@ public class DTORequestOrder {
     private String category;
     private float totalCost;
     private Collection<OrderItem> orderItem;
-    private Collection<Delivery> delivery;
     @NotNull(message = "{not.null}")
-    private Person seller;
+    private Person person;
     @NotNull(message = "{not.null}")
-    private Person buyer;
-    private Stock stockSeller;
-    private Stock stockBuyer;
+    private Stock stock;
 }

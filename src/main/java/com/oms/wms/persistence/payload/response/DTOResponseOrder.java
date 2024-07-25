@@ -17,9 +17,6 @@ public class DTOResponseOrder {
     private String category;
     private float totalCost;
     private Collection<OrderItem> orderItem;
-    private Collection<Delivery> delivery;
-    private Person seller;
-    private Person buyer;
-    private Stock stockSeller;
-    private Stock stockBuyer;
+    private Person person;
+    private Stock stock;
 }
