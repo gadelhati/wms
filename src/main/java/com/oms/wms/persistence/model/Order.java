@@ -1,6 +1,7 @@
 package com.oms.wms.persistence.model;
 
 import com.oms.wms.persistence.GenericAuditEntity;
+import com.oms.wms.persistence.OrderCategory;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +15,8 @@ import java.util.Collection;
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Order extends GenericAuditEntity {
 
-    private String category;
+    @Enumerated(EnumType.STRING)
+    private OrderCategory category;
     @Transient
     private float totalCost;
 

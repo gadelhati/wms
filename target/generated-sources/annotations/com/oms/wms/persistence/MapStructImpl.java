@@ -4,12 +4,12 @@ import com.oms.wms.persistence.model.Address;
 import com.oms.wms.persistence.model.City;
 import com.oms.wms.persistence.model.Country;
 import com.oms.wms.persistence.model.Delivery;
+import com.oms.wms.persistence.model.Item;
 import com.oms.wms.persistence.model.Lot;
 import com.oms.wms.persistence.model.Order;
 import com.oms.wms.persistence.model.OrderItem;
 import com.oms.wms.persistence.model.Person;
 import com.oms.wms.persistence.model.Privilege;
-import com.oms.wms.persistence.model.Product;
 import com.oms.wms.persistence.model.Role;
 import com.oms.wms.persistence.model.State;
 import com.oms.wms.persistence.model.Stock;
@@ -18,12 +18,12 @@ import com.oms.wms.persistence.payload.request.DTORequestAddress;
 import com.oms.wms.persistence.payload.request.DTORequestCity;
 import com.oms.wms.persistence.payload.request.DTORequestCountry;
 import com.oms.wms.persistence.payload.request.DTORequestDelivery;
+import com.oms.wms.persistence.payload.request.DTORequestItem;
 import com.oms.wms.persistence.payload.request.DTORequestLot;
 import com.oms.wms.persistence.payload.request.DTORequestOrder;
 import com.oms.wms.persistence.payload.request.DTORequestOrderItem;
 import com.oms.wms.persistence.payload.request.DTORequestPerson;
 import com.oms.wms.persistence.payload.request.DTORequestPrivilege;
-import com.oms.wms.persistence.payload.request.DTORequestProduct;
 import com.oms.wms.persistence.payload.request.DTORequestRole;
 import com.oms.wms.persistence.payload.request.DTORequestState;
 import com.oms.wms.persistence.payload.request.DTORequestStock;
@@ -32,12 +32,12 @@ import com.oms.wms.persistence.payload.response.DTOResponseAddress;
 import com.oms.wms.persistence.payload.response.DTOResponseCity;
 import com.oms.wms.persistence.payload.response.DTOResponseCountry;
 import com.oms.wms.persistence.payload.response.DTOResponseDelivery;
+import com.oms.wms.persistence.payload.response.DTOResponseItem;
 import com.oms.wms.persistence.payload.response.DTOResponseLot;
 import com.oms.wms.persistence.payload.response.DTOResponseOrder;
 import com.oms.wms.persistence.payload.response.DTOResponseOrderItem;
 import com.oms.wms.persistence.payload.response.DTOResponsePerson;
 import com.oms.wms.persistence.payload.response.DTOResponsePrivilege;
-import com.oms.wms.persistence.payload.response.DTOResponseProduct;
 import com.oms.wms.persistence.payload.response.DTOResponseRole;
 import com.oms.wms.persistence.payload.response.DTOResponseState;
 import com.oms.wms.persistence.payload.response.DTOResponseStock;
@@ -51,8 +51,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-07-23T03:13:14-0300",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 20.0.2 (Oracle Corporation)"
+    date = "2024-07-25T15:33:05-0300",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 20.0.1 (Oracle Corporation)"
 )
 @Component
 public class MapStructImpl implements MapStruct {
@@ -72,7 +72,6 @@ public class MapStructImpl implements MapStruct {
         String complement = null;
         String iBGECode = null;
         City city = null;
-        Person person = null;
 
         id = address.getId();
         cepNumber = address.getCepNumber();
@@ -83,9 +82,8 @@ public class MapStructImpl implements MapStruct {
         complement = address.getComplement();
         iBGECode = address.getIBGECode();
         city = address.getCity();
-        person = address.getPerson();
 
-        DTOResponseAddress dTOResponseAddress = new DTOResponseAddress( id, cepNumber, cepCategory, cepSubCategory, neighborhood, address1, complement, iBGECode, city, person );
+        DTOResponseAddress dTOResponseAddress = new DTOResponseAddress( id, cepNumber, cepCategory, cepSubCategory, neighborhood, address1, complement, iBGECode, city );
 
         return dTOResponseAddress;
     }
@@ -184,7 +182,9 @@ public class MapStructImpl implements MapStruct {
             orderItem = new ArrayList<OrderItem>( collection );
         }
         id = order.getId();
-        category = order.getCategory();
+        if ( order.getCategory() != null ) {
+            category = order.getCategory().name();
+        }
         totalCost = order.getTotalCost();
 
         Collection<Delivery> delivery = null;
@@ -209,16 +209,16 @@ public class MapStructImpl implements MapStruct {
         float discount = 0.0f;
         int quantity = 0;
         float totalCost = 0.0f;
-        Product product = null;
+        Item item = null;
 
         id = orderItem.getId();
         unitPrice = orderItem.getUnitPrice();
         discount = orderItem.getDiscount();
         quantity = orderItem.getQuantity();
         totalCost = orderItem.getTotalCost();
-        product = orderItem.getProduct();
+        item = orderItem.getItem();
 
-        DTOResponseOrderItem dTOResponseOrderItem = new DTOResponseOrderItem( id, unitPrice, discount, quantity, totalCost, product );
+        DTOResponseOrderItem dTOResponseOrderItem = new DTOResponseOrderItem( id, unitPrice, discount, quantity, totalCost, item );
 
         return dTOResponseOrderItem;
     }
@@ -274,8 +274,8 @@ public class MapStructImpl implements MapStruct {
     }
 
     @Override
-    public DTOResponseProduct toDTO(Product product) {
-        if ( product == null ) {
+    public DTOResponseItem toDTO(Item item) {
+        if ( item == null ) {
             return null;
         }
 
@@ -297,27 +297,27 @@ public class MapStructImpl implements MapStruct {
         String url = null;
         Lot lot = null;
 
-        id = product.getId();
-        sku = product.getSku();
-        gtin = product.getGtin();
-        category = product.getCategory();
-        brand = product.getBrand();
-        model = product.getModel();
-        minimumStock = product.getMinimumStock();
-        maximumStock = product.getMaximumStock();
-        reservedStock = product.getReservedStock();
-        availableStock = product.getAvailableStock();
-        bulk = product.getBulk();
-        grossWeightMeasurement = product.getGrossWeightMeasurement();
-        netWeightMeasurement = product.getNetWeightMeasurement();
-        grossWeight = product.getGrossWeight();
-        netWeight = product.getNetWeight();
-        url = product.getUrl();
-        lot = product.getLot();
+        id = item.getId();
+        sku = item.getSku();
+        gtin = item.getGtin();
+        category = item.getCategory();
+        brand = item.getBrand();
+        model = item.getModel();
+        minimumStock = item.getMinimumStock();
+        maximumStock = item.getMaximumStock();
+        reservedStock = item.getReservedStock();
+        availableStock = item.getAvailableStock();
+        bulk = item.getBulk();
+        grossWeightMeasurement = item.getGrossWeightMeasurement();
+        netWeightMeasurement = item.getNetWeightMeasurement();
+        grossWeight = item.getGrossWeight();
+        netWeight = item.getNetWeight();
+        url = item.getUrl();
+        lot = item.getLot();
 
-        DTOResponseProduct dTOResponseProduct = new DTOResponseProduct( id, sku, gtin, category, brand, model, minimumStock, maximumStock, reservedStock, availableStock, bulk, grossWeightMeasurement, netWeightMeasurement, grossWeight, netWeight, url, lot );
+        DTOResponseItem dTOResponseItem = new DTOResponseItem( id, sku, gtin, category, brand, model, minimumStock, maximumStock, reservedStock, availableStock, bulk, grossWeightMeasurement, netWeightMeasurement, grossWeight, netWeight, url, lot );
 
-        return dTOResponseProduct;
+        return dTOResponseItem;
     }
 
     @Override
@@ -364,20 +364,15 @@ public class MapStructImpl implements MapStruct {
             return null;
         }
 
-        Collection<Order> order = null;
         UUID id = null;
         int maximumBulk = 0;
         int currentBulk = 0;
 
-        Collection<Order> collection = stock.getOrder();
-        if ( collection != null ) {
-            order = new ArrayList<Order>( collection );
-        }
         id = stock.getId();
         maximumBulk = stock.getMaximumBulk();
         currentBulk = stock.getCurrentBulk();
 
-        DTOResponseStock dTOResponseStock = new DTOResponseStock( id, maximumBulk, currentBulk, order );
+        DTOResponseStock dTOResponseStock = new DTOResponseStock( id, maximumBulk, currentBulk );
 
         return dTOResponseStock;
     }
@@ -427,7 +422,6 @@ public class MapStructImpl implements MapStruct {
         address.setComplement( dtoRequestAddress.getComplement() );
         address.setIBGECode( dtoRequestAddress.getIBGECode() );
         address.setCity( dtoRequestAddress.getCity() );
-        address.setPerson( dtoRequestAddress.getPerson() );
 
         return address;
     }
@@ -502,7 +496,9 @@ public class MapStructImpl implements MapStruct {
         Order order = new Order();
 
         order.setId( dtoRequestOrder.getId() );
-        order.setCategory( dtoRequestOrder.getCategory() );
+        if ( dtoRequestOrder.getCategory() != null ) {
+            order.setCategory( Enum.valueOf( OrderCategory.class, dtoRequestOrder.getCategory() ) );
+        }
         order.setTotalCost( dtoRequestOrder.getTotalCost() );
         Collection<OrderItem> collection = dtoRequestOrder.getOrderItem();
         if ( collection != null ) {
@@ -525,7 +521,7 @@ public class MapStructImpl implements MapStruct {
         orderItem.setDiscount( dtoRequestOrderItem.getDiscount() );
         orderItem.setQuantity( dtoRequestOrderItem.getQuantity() );
         orderItem.setTotalCost( dtoRequestOrderItem.getTotalCost() );
-        orderItem.setProduct( dtoRequestOrderItem.getProduct() );
+        orderItem.setItem( dtoRequestOrderItem.getItem() );
 
         return orderItem;
     }
@@ -570,32 +566,32 @@ public class MapStructImpl implements MapStruct {
     }
 
     @Override
-    public Product toObject(DTORequestProduct dtoRequestProduct) {
-        if ( dtoRequestProduct == null ) {
+    public Item toObject(DTORequestItem dtoRequestItem) {
+        if ( dtoRequestItem == null ) {
             return null;
         }
 
-        Product product = new Product();
+        Item item = new Item();
 
-        product.setId( dtoRequestProduct.getId() );
-        product.setSku( dtoRequestProduct.getSku() );
-        product.setGtin( dtoRequestProduct.getGtin() );
-        product.setCategory( dtoRequestProduct.getCategory() );
-        product.setBrand( dtoRequestProduct.getBrand() );
-        product.setModel( dtoRequestProduct.getModel() );
-        product.setMinimumStock( dtoRequestProduct.getMinimumStock() );
-        product.setMaximumStock( dtoRequestProduct.getMaximumStock() );
-        product.setReservedStock( dtoRequestProduct.getReservedStock() );
-        product.setAvailableStock( dtoRequestProduct.getAvailableStock() );
-        product.setBulk( dtoRequestProduct.getBulk() );
-        product.setGrossWeightMeasurement( dtoRequestProduct.getGrossWeightMeasurement() );
-        product.setNetWeightMeasurement( dtoRequestProduct.getNetWeightMeasurement() );
-        product.setGrossWeight( dtoRequestProduct.getGrossWeight() );
-        product.setNetWeight( dtoRequestProduct.getNetWeight() );
-        product.setUrl( dtoRequestProduct.getUrl() );
-        product.setLot( dtoRequestProduct.getLot() );
+        item.setId( dtoRequestItem.getId() );
+        item.setSku( dtoRequestItem.getSku() );
+        item.setGtin( dtoRequestItem.getGtin() );
+        item.setCategory( dtoRequestItem.getCategory() );
+        item.setBrand( dtoRequestItem.getBrand() );
+        item.setModel( dtoRequestItem.getModel() );
+        item.setMinimumStock( dtoRequestItem.getMinimumStock() );
+        item.setMaximumStock( dtoRequestItem.getMaximumStock() );
+        item.setReservedStock( dtoRequestItem.getReservedStock() );
+        item.setAvailableStock( dtoRequestItem.getAvailableStock() );
+        item.setBulk( dtoRequestItem.getBulk() );
+        item.setGrossWeightMeasurement( dtoRequestItem.getGrossWeightMeasurement() );
+        item.setNetWeightMeasurement( dtoRequestItem.getNetWeightMeasurement() );
+        item.setGrossWeight( dtoRequestItem.getGrossWeight() );
+        item.setNetWeight( dtoRequestItem.getNetWeight() );
+        item.setUrl( dtoRequestItem.getUrl() );
+        item.setLot( dtoRequestItem.getLot() );
 
-        return product;
+        return item;
     }
 
     @Override
@@ -639,10 +635,6 @@ public class MapStructImpl implements MapStruct {
         stock.setId( dtoRequestStock.getId() );
         stock.setMaximumBulk( dtoRequestStock.getMaximumBulk() );
         stock.setCurrentBulk( dtoRequestStock.getCurrentBulk() );
-        Collection<Order> collection = dtoRequestStock.getOrder();
-        if ( collection != null ) {
-            stock.setOrder( new ArrayList<Order>( collection ) );
-        }
 
         return stock;
     }

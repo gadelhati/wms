@@ -1,19 +1,19 @@
-package com.oms.wms.persistence.payload.response;
+package com.oms.wms.persistence.payload.request;
 
 import com.oms.wms.persistence.model.Lot;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.UUID;
 
-@Getter @AllArgsConstructor
-public class DTOResponseProduct {
+@Getter
+public class DTORequestItem {
 
     private UUID id;
     private String sku;
     private String gtin;
+    @NotNull(message = "{not.null}") @NotBlank(message = "{not.blank}")
     private String category;
     private String brand;
     private String model;

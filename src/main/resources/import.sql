@@ -6036,22 +6036,48 @@ INSERT INTO wms.city(id, code, state, name) VALUES ('86e62c9b-0689-4e62-9a20-628
 INSERT INTO wms.city(id, code, state, name) VALUES ('58209d31-dc3d-4de6-8fa5-a8732045b8ce', 5222302, '2fa44c87-1049-4aab-879b-ef36580f13cc', 'Vila Propício') ON CONFLICT DO NOTHING;
 INSERT INTO wms.city(id, code, state, name) VALUES ('204607b9-230d-401f-8a83-df6db00779c6', 5300108, '74432ca6-c90b-46c5-9607-9021fd544649', 'Brasília') ON CONFLICT DO NOTHING;
 
--- POPULING legalEntity
-INSERT INTO wms.legal_entity(birth, created_at, updated_at, country, created_by, id, modified_by, cnpj, email, name, telephone) VALUES (NOW(), NOW(), NOW(), 'b2e72768-e154-43a5-ae0c-652579d67600', null, '44c38b9e-ad4f-4f91-9a41-bd5d6b0c3d47', null, '012345678910110', 'lucianos@gmail.com', 'Lucianos', '{+552195337032}') ON CONFLICT DO NOTHING;
-INSERT INTO wms.legal_entity(birth, created_at, updated_at, country, created_by, id, modified_by, cnpj, email, name, telephone) VALUES (NOW(), NOW(), NOW(), 'b2e72768-e154-43a5-ae0c-652579d67600', null, 'dd941d78-4011-4446-b713-967a106c639a', null, '012345678910111', 'lucianas@gmail.com', 'Lucianas', '{+552195337033}') ON CONFLICT DO NOTHING;
+-- POPULING person
+INSERT INTO wms.person(birth, created_at, updated_at, country, created_by, id, modified_by, email, name, telephone) VALUES (NOW(), NOW(), NOW(), 'b2e72768-e154-43a5-ae0c-652579d67600', null, '44c38b9e-ad4f-4f91-9a41-bd5d6b0c3d47', null, 'lucianos.ti@gmail.com', 'Lucianos', '{+552195337032}') ON CONFLICT DO NOTHING;
+INSERT INTO wms.person(birth, created_at, updated_at, country, created_by, id, modified_by, email, name, telephone) VALUES (NOW(), NOW(), NOW(), 'b2e72768-e154-43a5-ae0c-652579d67600', null, 'dd941d78-4011-4446-b713-967a106c639a', null, 'lucianas.ti@gmail.com', 'Lucianas', '{+552195337033}') ON CONFLICT DO NOTHING;
+INSERT INTO wms.person(birth, created_at, updated_at, country, created_by, id, modified_by, email, name, telephone) VALUES (NOW(), NOW(), NOW(), 'b2e72768-e154-43a5-ae0c-652579d67600', null, '0e1237c9-78cd-417b-a1c0-72cb382f5eb3', null, 'gadelha.ti@gmail.com', 'gadelha', '{+5521995139695}') ON CONFLICT DO NOTHING;
+
+-- POPULING provider
+-- INSERT INTO wms.provider(
+-- 	cost, flexibility, payment_terms, quality, service, birth, created_at, delivery_time, updated_at, country, created_by, id, modified_by, cnpj, email, name, telephone)
+-- 	VALUES (10, 10, 10, 10, 10, NOW(), NOW(), NOW(), NOW(), 'b2e72768-e154-43a5-ae0c-652579d67600', null, '44c38b9e-ad4f-4f91-9a41-bd5d6b0c3d47', null, '012345678910110', 'lucianos@gmail.com', 'Lucianos', '{+552195337032}') ON CONFLICT DO NOTHING;
+
+-- POPULING legal_entity
+INSERT INTO wms.legal_entity(id, cnpj) VALUES ('dd941d78-4011-4446-b713-967a106c639a', '012345678910111') ON CONFLICT DO NOTHING;
 
 -- POPULING naturalPerson
-INSERT INTO wms.natural_person(birth, created_at, updated_at, country, created_by, id, modified_by, cpf, email, name, rg, telephone) VALUES (NOW(), NOW(), NOW(), 'b2e72768-e154-43a5-ae0c-652579d67600', null, '0e1237c9-78cd-417b-a1c0-72cb382f5eb3', null, '12345678910', 'gadelha.ti@gmail.com', 'gadelha', '1234567', '{+5521995139695}') ON CONFLICT DO NOTHING;
+INSERT INTO wms.natural_person(id, cpf, rg) VALUES ('0e1237c9-78cd-417b-a1c0-72cb382f5eb3', '12345678910', '1234567') ON CONFLICT DO NOTHING;
+
+---- POPULING provider
+--INSERT INTO wms.provider(
+--	cost, flexibility, payment_terms, quality, service, birth, created_at, delivery_time, updated_at, country, created_by, id, modified_by, cnpj, email, name, telephone)
+--	VALUES (10, 10, 10, 10, 10, NOW(), NOW(), NOW(), NOW(), 'b2e72768-e154-43a5-ae0c-652579d67600', null, '44c38b9e-ad4f-4f91-9a41-bd5d6b0c3d47', null, '012345678910110', 'lucianos@gmail.com', 'Lucianos', '{+552195337032}') ON CONFLICT DO NOTHING;
+--
+---- POPULING legal_entity
+--INSERT INTO wms.legal_entity(birth, created_at, updated_at, country, created_by, id, modified_by, cnpj, email, name, telephone) VALUES (NOW(), NOW(), NOW(), 'b2e72768-e154-43a5-ae0c-652579d67600', null, 'dd941d78-4011-4446-b713-967a106c639a', null, '012345678910111', 'lucianas@gmail.com', 'Lucianas', '{+552195337033}') ON CONFLICT DO NOTHING;
+--
+---- POPULING naturalPerson
+--INSERT INTO wms.natural_person(birth, created_at, updated_at, country, created_by, id, modified_by, cpf, email, name, rg, telephone) VALUES (NOW(), NOW(), NOW(), 'b2e72768-e154-43a5-ae0c-652579d67600', null, '0e1237c9-78cd-417b-a1c0-72cb382f5eb3', null, '12345678910', 'gadelha.ti@gmail.com', 'gadelha', '1234567', '{+5521995139695}') ON CONFLICT DO NOTHING;
 
 -- POPULING address
-INSERT INTO wms.address(created_at, updated_at, city, created_by, id, modified_by, person, address, cep_category, cep_number, cep_sub_category, complement, ibgecode, neighborhood) VALUES (NOW(), NOW(), 'e310e4b1-33c1-4316-9f5c-b76facd0b626', null, '9670f15a-4c30-4125-a800-b1b7e069862b', null, '44c38b9e-ad4f-4f91-9a41-bd5d6b0c3d47', 'Ezequiel Freire', 'logradouro', '21540005', 'S', 'Apto104F', null, 'Rocha Miranda') ON CONFLICT DO NOTHING;
-INSERT INTO wms.address(created_at, updated_at, city, created_by, id, modified_by, person, address, cep_category, cep_number, cep_sub_category, complement, ibgecode, neighborhood) VALUES (NOW(), NOW(), 'e310e4b1-33c1-4316-9f5c-b76facd0b626', null, '5a6b8c07-7263-4fd4-bcbc-e9842932bc0b', null, 'dd941d78-4011-4446-b713-967a106c639a', 'Ezequiel Freire', 'logradouro', '21540005', 'S', 'Apto104', null, 'Rocha Miranda') ON CONFLICT DO NOTHING;
-INSERT INTO wms.address(created_at, updated_at, city, created_by, id, modified_by, person, address, cep_category, cep_number, cep_sub_category, complement, ibgecode, neighborhood) VALUES (NOW(), NOW(), 'e310e4b1-33c1-4316-9f5c-b76facd0b626', null, '66ed0291-50dd-47bf-9adb-3f4560df9619', null, 'dd941d78-4011-4446-b713-967a106c639a', 'Ezequiel Freire', 'logradouro', '21540005', 'S', 'Apto104G', null, 'Rocha Miranda') ON CONFLICT DO NOTHING;
-INSERT INTO wms.address(created_at, updated_at, city, created_by, id, modified_by, person, address, cep_category, cep_number, cep_sub_category, complement, ibgecode, neighborhood) VALUES (NOW(), NOW(), 'e310e4b1-33c1-4316-9f5c-b76facd0b626', null, '86f2e315-d3c0-425f-a2df-736a0cd630f1', null, '0e1237c9-78cd-417b-a1c0-72cb382f5eb3', 'Ezequiel Freire', 'logradouro', '21540005', 'S', 'Apto104A', null, 'Rocha Miranda') ON CONFLICT DO NOTHING;
+INSERT INTO wms.address(created_at, updated_at, city, created_by, id, modified_by, address, cep_category, cep_number, cep_sub_category, complement, ibgecode, neighborhood) VALUES (NOW(), NOW(), 'e310e4b1-33c1-4316-9f5c-b76facd0b626', null, '9670f15a-4c30-4125-a800-b1b7e069862b', null, 'Ezequiel Freire', 'logradouro', '21540005', 'S', 'Apto104F', null, 'Rocha Miranda') ON CONFLICT DO NOTHING;
+INSERT INTO wms.address(created_at, updated_at, city, created_by, id, modified_by, address, cep_category, cep_number, cep_sub_category, complement, ibgecode, neighborhood) VALUES (NOW(), NOW(), 'e310e4b1-33c1-4316-9f5c-b76facd0b626', null, '5a6b8c07-7263-4fd4-bcbc-e9842932bc0b', null, 'Ezequiel Freire', 'logradouro', '21540005', 'S', 'Apto104', null, 'Rocha Miranda') ON CONFLICT DO NOTHING;
+INSERT INTO wms.address(created_at, updated_at, city, created_by, id, modified_by, address, cep_category, cep_number, cep_sub_category, complement, ibgecode, neighborhood) VALUES (NOW(), NOW(), 'e310e4b1-33c1-4316-9f5c-b76facd0b626', null, '66ed0291-50dd-47bf-9adb-3f4560df9619', null, 'Ezequiel Freire', 'logradouro', '21540005', 'S', 'Apto104G', null, 'Rocha Miranda') ON CONFLICT DO NOTHING;
+INSERT INTO wms.address(created_at, updated_at, city, created_by, id, modified_by, address, cep_category, cep_number, cep_sub_category, complement, ibgecode, neighborhood) VALUES (NOW(), NOW(), 'e310e4b1-33c1-4316-9f5c-b76facd0b626', null, '86f2e315-d3c0-425f-a2df-736a0cd630f1', null, 'Ezequiel Freire', 'logradouro', '21540005', 'S', 'Apto104A', null, 'Rocha Miranda') ON CONFLICT DO NOTHING;
+
+-- POPULING person_adresses
+INSERT INTO wms.person_addresses(person_id, address_id) VALUES ('44c38b9e-ad4f-4f91-9a41-bd5d6b0c3d47', '9670f15a-4c30-4125-a800-b1b7e069862b') ON CONFLICT DO NOTHING;
+INSERT INTO wms.person_addresses(person_id, address_id) VALUES ('dd941d78-4011-4446-b713-967a106c639a', '5a6b8c07-7263-4fd4-bcbc-e9842932bc0b') ON CONFLICT DO NOTHING;
+INSERT INTO wms.person_addresses(person_id, address_id) VALUES ('dd941d78-4011-4446-b713-967a106c639a', '66ed0291-50dd-47bf-9adb-3f4560df9619') ON CONFLICT DO NOTHING;
+INSERT INTO wms.person_addresses(person_id, address_id) VALUES ('0e1237c9-78cd-417b-a1c0-72cb382f5eb3', '86f2e315-d3c0-425f-a2df-736a0cd630f1') ON CONFLICT DO NOTHING;
 
 -- POPULING stock
-INSERT INTO wms.stock(maximum_bulk, created_at, updated_at, address, created_by, id, modified_by) VALUES (0, NOW(), NOW(), '5a6b8c07-7263-4fd4-bcbc-e9842932bc0b', null, '259b9c6d-d88d-4023-bdde-d6fb3dc9a52f', null);
-INSERT INTO wms.stock(maximum_bulk, created_at, updated_at, address, created_by, id, modified_by) VALUES (0, NOW(), NOW(), '66ed0291-50dd-47bf-9adb-3f4560df9619', null, '1ef70708-5f5a-4557-a54b-b5b4c91ca76d', null);
+INSERT INTO wms.stock(maximum_bulk, created_at, updated_at, address, created_by, id, modified_by) VALUES (0, NOW(), NOW(), '5a6b8c07-7263-4fd4-bcbc-e9842932bc0b', null, '259b9c6d-d88d-4023-bdde-d6fb3dc9a52f', null) ON CONFLICT DO NOTHING;
+INSERT INTO wms.stock(maximum_bulk, created_at, updated_at, address, created_by, id, modified_by) VALUES (0, NOW(), NOW(), '66ed0291-50dd-47bf-9adb-3f4560df9619', null, '1ef70708-5f5a-4557-a54b-b5b4c91ca76d', null) ON CONFLICT DO NOTHING;
 
 ---- POPULING order
 INSERT INTO wms.order(created_at, updated_at, created_by, id, modified_by, person, stock, category) VALUES (NOW(), NOW(), null, '513b11ad-5021-4b02-a4f5-d1175ab28743', null, '44c38b9e-ad4f-4f91-9a41-bd5d6b0c3d47', '259b9c6d-d88d-4023-bdde-d6fb3dc9a52f', 'PURCHASE') ON CONFLICT DO NOTHING;
@@ -6063,13 +6089,13 @@ INSERT INTO wms.lot(
 	created_at, manufacturing, overdue, updated_at, created_by, id, modified_by, "number")
 	VALUES (NOW(), NOW(), NOW() + interval '1 year', NOW(), null, 'dbb9e791-67ee-44f1-a6a3-0bc906b3771d', null, '123456789') ON CONFLICT DO NOTHING;
 
--- POPULING product
-INSERT INTO wms.product(
+-- POPULING item
+INSERT INTO wms.item(
 	available_stock, bulk, gross_weight, gross_weight_measurement, maximum_stock, minimum_stock, net_weight, net_weight_measurement, reserved_stock, created_at, updated_at, created_by, id, lot, modified_by, brand, category, cest, cfop, gtin, model, ncm, sku, url)
 	VALUES (1, 1, 1, 1, 1, 1, 1, 1, 1, NOW(), NOW(), null, 'dc44029c-d76e-4926-900f-15910fb3de58', 'dbb9e791-67ee-44f1-a6a3-0bc906b3771d', null, null, '', '', '', '', '', '', '', 'http://image.com') ON CONFLICT DO NOTHING;
 
 -- POPULING order_item
-INSERT INTO wms.order_item(discount, quantity, unit_price, created_at, updated_at, created_by, id, modified_by, product) VALUES (0, 1, 10.00, NOW(), NOW(), null, '50d64352-6d0f-430c-95bc-3098a8a168ab', null, 'dc44029c-d76e-4926-900f-15910fb3de58') ON CONFLICT DO NOTHING;
+INSERT INTO wms.order_item(discount, quantity, unit_price, created_at, updated_at, created_by, id, modified_by, item) VALUES (0, 1, 10.00, NOW(), NOW(), null, '50d64352-6d0f-430c-95bc-3098a8a168ab', null, 'dc44029c-d76e-4926-900f-15910fb3de58') ON CONFLICT DO NOTHING;
 
 -- POPULING order_order_items
 INSERT INTO wms.order_order_items(order_id, order_item_id) VALUES ('513b11ad-5021-4b02-a4f5-d1175ab28743', '50d64352-6d0f-430c-95bc-3098a8a168ab') ON CONFLICT DO NOTHING;

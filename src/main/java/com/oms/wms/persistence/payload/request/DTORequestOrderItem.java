@@ -1,6 +1,6 @@
 package com.oms.wms.persistence.payload.request;
 
-import com.oms.wms.persistence.model.Product;
+import com.oms.wms.persistence.model.Item;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -17,5 +17,5 @@ public class DTORequestOrderItem {
     private int quantity;
     private float totalCost;
     @NotNull(message = "{not.null}")
-    private Product product;
+    private Item item;
 }

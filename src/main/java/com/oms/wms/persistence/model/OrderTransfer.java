@@ -17,5 +17,5 @@ public class OrderTransfer extends Order {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "stock", nullable = false)
-    private Stock stock;//destine local, internal entity
+    private Stock stock;//destiny local == internal entity
 }

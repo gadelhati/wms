@@ -19,5 +19,4 @@ public class DTOResponseAddress {
     private String complement;
     private String IBGECode;
     private City city;
-    private Person person;
 }

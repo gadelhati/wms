@@ -20,8 +20,4 @@ public class Stock extends GenericAuditEntity {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "address", nullable = false)
     private Address address;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinTable(name = "stock_orders", joinColumns = @JoinColumn(name = "stock_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"))
-    private Collection<Order> order;
 }

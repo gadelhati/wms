@@ -11,7 +11,7 @@ import org.hibernate.envers.Audited;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name", "email"})) @EqualsAndHashCode(callSuper = true)
 public class Person extends GenericAuditEntity {
 

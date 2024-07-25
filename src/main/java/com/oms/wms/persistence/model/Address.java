@@ -22,7 +22,4 @@ public class Address extends GenericAuditEntity {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "city", nullable = false)
     private City city;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "person", nullable = true)
-    private Person person;
 }

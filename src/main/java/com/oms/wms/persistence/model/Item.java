@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
 
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"gtin"})) @EqualsAndHashCode(callSuper = true)
-public class Product extends GenericAuditEntity {
+public class Item extends GenericAuditEntity {
 
     private String sku;
     private String gtin;

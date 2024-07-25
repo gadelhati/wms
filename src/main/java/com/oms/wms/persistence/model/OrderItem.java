@@ -18,6 +18,6 @@ public class OrderItem extends GenericAuditEntity {
     private float totalCost;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "product", nullable = false)
-    private Product product;
+    @JoinColumn(name = "item", nullable = false)
+    private Item item;
 }

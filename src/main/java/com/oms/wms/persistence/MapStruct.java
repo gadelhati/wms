@@ -22,7 +22,7 @@ public interface MapStruct {
     DTOResponseOrderItem toDTO(OrderItem orderItem);
     DTOResponsePerson toDTO(Person person);
     DTOResponsePrivilege toDTO(Privilege privilege);
-    DTOResponseProduct toDTO(Product product);
+    DTOResponseItem toDTO(Item item);
     DTOResponseRole toDTO(Role role);
     DTOResponseState toDTO(State state);
     DTOResponseStock toDTO(Stock stock);
@@ -37,7 +37,7 @@ public interface MapStruct {
     OrderItem toObject(DTORequestOrderItem dtoRequestOrderItem);
     Person toObject(DTORequestPerson dtoRequestPerson);
     Privilege toObject(DTORequestPrivilege dtoRequestPrivilege);
-    Product toObject(DTORequestProduct dtoRequestProduct);
+    Item toObject(DTORequestItem dtoRequestItem);
     Role toObject(DTORequestRole dtoRequestRole);
     State toObject(DTORequestState dtoRequestState);
     Stock toObject(DTORequestStock dtoRequestStock);
