@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
 
-@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @Table(uniqueConstraints = { @UniqueConstraint(columnNames = {"code", "name"})}) @EqualsAndHashCode(callSuper = false)
+@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @Table(uniqueConstraints = { @UniqueConstraint(columnNames = {"code", "name"})}) @EqualsAndHashCode(callSuper = true)
 public class State extends GenericAuditEntity {
 
     private String code;

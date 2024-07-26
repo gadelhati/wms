@@ -1,7 +1,6 @@
 package com.oms.wms.persistence.payload.request;
 
 import com.oms.wms.persistence.model.City;
-import com.oms.wms.persistence.model.Person;
 import lombok.Getter;
 
 import java.util.UUID;

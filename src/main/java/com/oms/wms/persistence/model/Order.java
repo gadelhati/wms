@@ -12,7 +12,7 @@ import org.hibernate.envers.Audited;
 import java.util.Collection;
 
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
+@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = true)
 public class Order extends GenericAuditEntity {
 
     @Enumerated(EnumType.STRING)

@@ -35,7 +35,7 @@ class ModelTest {
         point = new Point(coordinateSequence, geometryFactory);
         linearRing = geometryFactory.createLinearRing();
 
-        country = new Country((int)(Math.random() * Math.random()), "Gadelha");
+        country = new Country("code", "Gadelha");
         state = new State("code", "Gadelha", country);
     }
     @Test

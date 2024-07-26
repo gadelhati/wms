@@ -45,14 +45,15 @@ import com.oms.wms.persistence.payload.response.DTOResponseUser;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Set;
 import java.util.UUID;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-07-25T15:33:05-0300",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 20.0.1 (Oracle Corporation)"
+    date = "2024-07-26T00:51:56-0300",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 20.0.2 (Oracle Corporation)"
 )
 @Component
 public class MapStructImpl implements MapStruct {
@@ -172,28 +173,14 @@ public class MapStructImpl implements MapStruct {
             return null;
         }
 
-        Collection<OrderItem> orderItem = null;
-        UUID id = null;
-        String category = null;
-        float totalCost = 0.0f;
+        DTOResponseOrder dTOResponseOrder = new DTOResponseOrder();
 
-        Collection<OrderItem> collection = order.getOrderItem();
-        if ( collection != null ) {
-            orderItem = new ArrayList<OrderItem>( collection );
+        if ( dTOResponseOrder.getOrderItem() != null ) {
+            Collection<OrderItem> collection = order.getOrderItem();
+            if ( collection != null ) {
+                dTOResponseOrder.getOrderItem().addAll( collection );
+            }
         }
-        id = order.getId();
-        if ( order.getCategory() != null ) {
-            category = order.getCategory().name();
-        }
-        totalCost = order.getTotalCost();
-
-        Collection<Delivery> delivery = null;
-        Person seller = null;
-        Person buyer = null;
-        Stock stockSeller = null;
-        Stock stockBuyer = null;
-
-        DTOResponseOrder dTOResponseOrder = new DTOResponseOrder( id, category, totalCost, orderItem, delivery, seller, buyer, stockSeller, stockBuyer );
 
         return dTOResponseOrder;
     }
@@ -282,6 +269,9 @@ public class MapStructImpl implements MapStruct {
         UUID id = null;
         String sku = null;
         String gtin = null;
+        String ncm = null;
+        String cest = null;
+        String cfop = null;
         String category = null;
         String brand = null;
         String model = null;
@@ -300,6 +290,9 @@ public class MapStructImpl implements MapStruct {
         id = item.getId();
         sku = item.getSku();
         gtin = item.getGtin();
+        ncm = item.getNcm();
+        cest = item.getCest();
+        cfop = item.getCfop();
         category = item.getCategory();
         brand = item.getBrand();
         model = item.getModel();
@@ -315,7 +308,7 @@ public class MapStructImpl implements MapStruct {
         url = item.getUrl();
         lot = item.getLot();
 
-        DTOResponseItem dTOResponseItem = new DTOResponseItem( id, sku, gtin, category, brand, model, minimumStock, maximumStock, reservedStock, availableStock, bulk, grossWeightMeasurement, netWeightMeasurement, grossWeight, netWeight, url, lot );
+        DTOResponseItem dTOResponseItem = new DTOResponseItem( id, sku, gtin, ncm, cest, cfop, category, brand, model, minimumStock, maximumStock, reservedStock, availableStock, bulk, grossWeightMeasurement, netWeightMeasurement, grossWeight, netWeight, url, lot );
 
         return dTOResponseItem;
     }
@@ -367,12 +360,14 @@ public class MapStructImpl implements MapStruct {
         UUID id = null;
         int maximumBulk = 0;
         int currentBulk = 0;
+        Address address = null;
 
         id = stock.getId();
         maximumBulk = stock.getMaximumBulk();
         currentBulk = stock.getCurrentBulk();
+        address = stock.getAddress();
 
-        DTOResponseStock dTOResponseStock = new DTOResponseStock( id, maximumBulk, currentBulk );
+        DTOResponseStock dTOResponseStock = new DTOResponseStock( id, maximumBulk, currentBulk, address );
 
         return dTOResponseStock;
     }
@@ -504,6 +499,8 @@ public class MapStructImpl implements MapStruct {
         if ( collection != null ) {
             order.setOrderItem( new ArrayList<OrderItem>( collection ) );
         }
+        order.setStock( dtoRequestOrder.getStock() );
+        order.setPerson( dtoRequestOrder.getPerson() );
 
         return order;
     }
@@ -561,6 +558,10 @@ public class MapStructImpl implements MapStruct {
 
         privilege.setId( dtoRequestPrivilege.getId() );
         privilege.setName( dtoRequestPrivilege.getName() );
+        Set<Role> set = dtoRequestPrivilege.getRole();
+        if ( set != null ) {
+            privilege.setRole( new ArrayList<Role>( set ) );
+        }
 
         return privilege;
     }
@@ -576,6 +577,9 @@ public class MapStructImpl implements MapStruct {
         item.setId( dtoRequestItem.getId() );
         item.setSku( dtoRequestItem.getSku() );
         item.setGtin( dtoRequestItem.getGtin() );
+        item.setNcm( dtoRequestItem.getNcm() );
+        item.setCest( dtoRequestItem.getCest() );
+        item.setCfop( dtoRequestItem.getCfop() );
         item.setCategory( dtoRequestItem.getCategory() );
         item.setBrand( dtoRequestItem.getBrand() );
         item.setModel( dtoRequestItem.getModel() );
@@ -635,6 +639,7 @@ public class MapStructImpl implements MapStruct {
         stock.setId( dtoRequestStock.getId() );
         stock.setMaximumBulk( dtoRequestStock.getMaximumBulk() );
         stock.setCurrentBulk( dtoRequestStock.getCurrentBulk() );
+        stock.setAddress( dtoRequestStock.getAddress() );
 
         return stock;
     }

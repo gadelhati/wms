@@ -1,7 +1,6 @@
 package com.oms.wms.persistence.payload.response;
 
 import com.oms.wms.persistence.model.City;
-import com.oms.wms.persistence.model.Person;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

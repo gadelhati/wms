@@ -9,7 +9,7 @@ import org.hibernate.envers.Audited;
 
 import java.time.LocalDateTime;
 
-@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
+@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = true)
 public class OrderTransfer extends Order {
 
     private LocalDateTime starts;

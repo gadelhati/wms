@@ -1,6 +1,5 @@
 package com.oms.wms.persistence.payload.request;
 
-import com.oms.wms.persistence.model.Delivery;
 import com.oms.wms.persistence.model.OrderItem;
 import com.oms.wms.persistence.model.Person;
 import com.oms.wms.persistence.model.Stock;
@@ -18,7 +17,7 @@ public class DTORequestOrder {
     private float totalCost;
     private Collection<OrderItem> orderItem;
     @NotNull(message = "{not.null}")
-    private Person person;
-    @NotNull(message = "{not.null}")
     private Stock stock;
+    @NotNull(message = "{not.null}")
+    private Person person;
 }
