@@ -11,5 +11,5 @@ public class DTORequestOrderTransfer extends Order {
 
     private LocalDateTime starts;
     private LocalDateTime finish;
-    private Stock stock;//destiny local == internal entity
+    private Stock stock2;//destiny local == internal entity
 }

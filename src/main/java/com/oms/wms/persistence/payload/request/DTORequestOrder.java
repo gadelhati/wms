@@ -1,5 +1,6 @@
 package com.oms.wms.persistence.payload.request;
 
+import com.oms.wms.persistence.OrderCategory;
 import com.oms.wms.persistence.model.OrderItem;
 import com.oms.wms.persistence.model.Person;
 import com.oms.wms.persistence.model.Stock;
@@ -13,7 +14,7 @@ import java.util.UUID;
 public class DTORequestOrder {
 
     private UUID id;
-    private String category;
+    private OrderCategory category;
     private float totalCost;
     private Collection<OrderItem> orderItem;
     @NotNull(message = "{not.null}")

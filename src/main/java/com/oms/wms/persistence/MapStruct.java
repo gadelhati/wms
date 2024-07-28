@@ -3,9 +3,6 @@ package com.oms.wms.persistence;
 import com.oms.wms.persistence.model.*;
 import com.oms.wms.persistence.payload.request.*;
 import com.oms.wms.persistence.payload.response.*;
-import com.oms.wms.persistence.model.*;
-import com.oms.wms.persistence.payload.request.*;
-import com.oms.wms.persistence.payload.response.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
