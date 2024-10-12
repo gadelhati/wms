@@ -51,4 +51,11 @@ public class ServiceItem {
     public void delete() {
         repositoryItem.deleteAll();
     }
+
+    public boolean existsByGtin(String value) {
+        return repositoryItem.existsByGtinIgnoreCase(value);
+    }
+    public boolean existsByGtinAndIdNot(String value, UUID id) {
+        return repositoryItem.existsByGtinIgnoreCaseAndIdNot(value, id);
+    }
 }

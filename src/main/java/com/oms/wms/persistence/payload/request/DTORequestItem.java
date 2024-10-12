@@ -12,6 +12,7 @@ public class DTORequestItem {
 
     private UUID id;
     private String sku;
+    @NotNull(message = "{not.null}") @NotBlank(message = "{not.blank}")
     private String gtin;
     private String ncm;
     private String cest;
@@ -30,5 +31,6 @@ public class DTORequestItem {
     private int grossWeight;//peso bruto
     private int netWeight;//peso líquido
     private String url;//image
+    @NotNull(message = "{not.null}")
     private Lot lot;
 }
