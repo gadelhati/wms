@@ -51,4 +51,8 @@ public class ServiceStock {
     public void delete() {
         repositoryStock.deleteAll();
     }
+
+    public boolean existsById(UUID value) {
+        return repositoryStock.findById(value).orElse(null) != null;
+    }
 }

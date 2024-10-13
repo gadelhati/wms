@@ -51,4 +51,8 @@ public class ServiceOrderItem {
     public void delete() {
         repositoryOrderItem.deleteAll();
     }
+
+    public boolean existsById(UUID value) {
+        return repositoryOrderItem.findById(value).orElse(null) != null;
+    }
 }

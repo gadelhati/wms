@@ -57,4 +57,7 @@ public class ServicePerson implements ServiceInterface<DTOResponsePerson, DTOReq
     public boolean existsByNameAndIdNot(String value, UUID id) {
         return repositoryPerson.existsByNameIgnoreCaseAndIdNot(value, id);
     }
+    public boolean existsById(UUID value) {
+        return repositoryPerson.findById(value).orElse(null) != null;
+    }
 }
