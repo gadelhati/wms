@@ -58,4 +58,7 @@ public class ServiceItem {
     public boolean existsByGtinAndIdNot(String value, UUID id) {
         return repositoryItem.existsByGtinIgnoreCaseAndIdNot(value, id);
     }
+    public boolean existsById(UUID value) {
+        return repositoryItem.findById(value).orElse(null) != null;
+    }
 }

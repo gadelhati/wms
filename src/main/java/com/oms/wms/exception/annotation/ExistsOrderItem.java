@@ -3,7 +3,7 @@ package com.oms.wms.exception.annotation;
 import com.oms.wms.persistence.model.OrderItem;
 import com.oms.wms.persistence.payload.request.DTORequestOrder;
 import com.oms.wms.service.ServiceOrder;
-import com.oms.wms.service.ServiceOrderItem;
+import com.oms.wms.service.ServiceItem;
 import jakarta.validation.Constraint;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -20,7 +20,7 @@ import static com.oms.wms.exception.Validator.isNull;
 @Documented
 public @interface ExistsOrderItem {
 
-    String message() default "Order Item {exists}";
+    String message() default "Items of Order {exists}";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 
@@ -29,14 +29,14 @@ public @interface ExistsOrderItem {
         @Autowired
         private ServiceOrder serviceOrder;
         @Autowired
-        private ServiceOrderItem serviceOrderItem;
+        private ServiceItem serviceItem;
 
         @Override
         public boolean isValid(DTORequestOrder value, ConstraintValidatorContext context) {
             boolean valid = true;
             if (!isNull(value.getOrderItem())) {
                 for (OrderItem orderItem : value.getOrderItem()) {
-                    if (isNull(orderItem.getId()) || orderItem.getId().equals("") || !serviceOrderItem.existsById(orderItem.getId())) {
+                    if (isNull(orderItem.getItem().getId()) || orderItem.getItem().getId().equals("") || !serviceItem.existsById(orderItem.getItem().getId())) {
                         valid = false;
                         break;
                     }

@@ -20,7 +20,7 @@ public class Order extends GenericAuditEntity {
     @Transient
     private float totalCost;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(name = "order_orderItems", joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "orderItem_id", referencedColumnName = "id"))
     private Collection<OrderItem> orderItem;
