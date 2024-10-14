@@ -5866,8 +5866,8 @@ INSERT INTO wms.person_addresses(person_id, address_id) VALUES ('dd941d78-4011-4
 INSERT INTO wms.person_addresses(person_id, address_id) VALUES ('0e1237c9-78cd-417b-a1c0-72cb382f5eb3', '86f2e315-d3c0-425f-a2df-736a0cd630f1') ON CONFLICT DO NOTHING;
 
 -- POPULING stock
-INSERT INTO wms.stock(maximum_bulk, created_at, updated_at, address, created_by, id, modified_by) VALUES (0, NOW(), NOW(), '5a6b8c07-7263-4fd4-bcbc-e9842932bc0b', null, '259b9c6d-d88d-4023-bdde-d6fb3dc9a52f', null) ON CONFLICT DO NOTHING;
-INSERT INTO wms.stock(maximum_bulk, created_at, updated_at, address, created_by, id, modified_by) VALUES (0, NOW(), NOW(), '66ed0291-50dd-47bf-9adb-3f4560df9619', null, '1ef70708-5f5a-4557-a54b-b5b4c91ca76d', null) ON CONFLICT DO NOTHING;
+INSERT INTO wms.stock(name, maximum_bulk, created_at, updated_at, address, created_by, id, modified_by) VALUES ('stock 1', 0, NOW(), NOW(), '5a6b8c07-7263-4fd4-bcbc-e9842932bc0b', null, '259b9c6d-d88d-4023-bdde-d6fb3dc9a52f', null) ON CONFLICT DO NOTHING;
+INSERT INTO wms.stock(name, maximum_bulk, created_at, updated_at, address, created_by, id, modified_by) VALUES ('stock 2', 0, NOW(), NOW(), '66ed0291-50dd-47bf-9adb-3f4560df9619', null, '1ef70708-5f5a-4557-a54b-b5b4c91ca76d', null) ON CONFLICT DO NOTHING;
 
 -- POPULING lot
 INSERT INTO wms.lot(created_at, manufacturing, overdue, updated_at, created_by, id, modified_by, "number") VALUES (NOW(), NOW(), NOW() + interval '1 year', NOW(), null, 'dbb9e791-67ee-44f1-a6a3-0bc906b3771d', null, '123456789') ON CONFLICT DO NOTHING;

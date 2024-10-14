@@ -13,6 +13,7 @@ import java.util.Collection;
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = true)
 public class Stock extends GenericAuditEntity {
 
+    private String name;
     private int maximumBulk;
     @Transient
     private int currentBulk;

@@ -9,6 +9,7 @@ import java.util.UUID;
 public class DTORequestStock {
 
     private UUID id;
+    private String name;
     private int maximumBulk;
     private int currentBulk;
     private Address address;
