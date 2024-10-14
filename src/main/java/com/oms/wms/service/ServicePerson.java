@@ -34,7 +34,7 @@ public class ServicePerson implements ServiceInterface<DTOResponsePerson, DTOReq
             setMethod.invoke(object, value);
             Example<Person> example = Example.of(object, exampleMatcher);
             return repositoryPerson.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
-        } catch (IllegalArgumentException exception) {
+        } catch (NoSuchMethodException exception) {
             return repositoryPerson.findById(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
         } catch (Exception e) {
             return repositoryPerson.findAll(pageable).map(MapStruct.MAPPER::toDTO);

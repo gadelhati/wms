@@ -34,7 +34,7 @@ public class ServiceItem {
             setMethod.invoke(object, value);
             Example<Item> example = Example.of(object, exampleMatcher);
             return repositoryItem.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
-        } catch (IllegalArgumentException exception) {
+        } catch (NoSuchMethodException exception) {
             return repositoryItem.findById(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
         } catch (Exception e) {
             return repositoryItem.findAll(pageable).map(MapStruct.MAPPER::toDTO);

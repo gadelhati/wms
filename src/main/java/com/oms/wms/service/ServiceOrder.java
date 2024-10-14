@@ -34,7 +34,7 @@ public class ServiceOrder {
             setMethod.invoke(object, value);
             Example<Order> example = Example.of(object, exampleMatcher);
             return repositoryOrder.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
-        } catch (IllegalArgumentException exception) {
+        } catch (NoSuchMethodException exception) {
             return repositoryOrder.findById(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
         } catch (Exception e) {
             return repositoryOrder.findAll(pageable).map(MapStruct.MAPPER::toDTO);

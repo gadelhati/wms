@@ -34,7 +34,7 @@ public class ServiceStock {
             setMethod.invoke(object, value);
             Example<Stock> example = Example.of(object, exampleMatcher);
             return repositoryStock.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
-        } catch (IllegalArgumentException exception) {
+        } catch (NoSuchMethodException exception) {
             return repositoryStock.findById(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
         } catch (Exception e) {
             return repositoryStock.findAll(pageable).map(MapStruct.MAPPER::toDTO);

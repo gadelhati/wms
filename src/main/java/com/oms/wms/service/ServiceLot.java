@@ -34,7 +34,7 @@ public class ServiceLot implements ServiceInterface<DTOResponseLot, DTORequestLo
             setMethod.invoke(object, value);
             Example<Lot> example = Example.of(object, exampleMatcher);
             return repositoryLot.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
-        } catch (IllegalArgumentException exception) {
+        } catch (NoSuchMethodException exception) {
             return repositoryLot.findById(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
         } catch (Exception e) {
             return repositoryLot.findAll(pageable).map(MapStruct.MAPPER::toDTO);

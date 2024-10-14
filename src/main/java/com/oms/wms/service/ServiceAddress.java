@@ -34,7 +34,7 @@ public class ServiceAddress implements ServiceInterface<DTOResponseAddress, DTOR
             setMethod.invoke(object, value);
             Example<Address> example = Example.of(object, exampleMatcher);
             return repositoryAddress.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
-        } catch (IllegalArgumentException exception) {
+        } catch (NoSuchMethodException exception) {
             return repositoryAddress.findById(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
         } catch (Exception e) {
             return repositoryAddress.findAll(pageable).map(MapStruct.MAPPER::toDTO);

@@ -34,7 +34,7 @@ public class ServiceDelivery {
             setMethod.invoke(object, value);
             Example<Delivery> example = Example.of(object, exampleMatcher);
             return repositoryDelivery.findAll(example, pageable).map(MapStruct.MAPPER::toDTO);
-        } catch (IllegalArgumentException exception) {
+        } catch (NoSuchMethodException exception) {
             return repositoryDelivery.findById(pageable, UUID.fromString(value)).map(MapStruct.MAPPER::toDTO);
         } catch (Exception e) {
             return repositoryDelivery.findAll(pageable).map(MapStruct.MAPPER::toDTO);
