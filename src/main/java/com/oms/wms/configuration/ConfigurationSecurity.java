@@ -1,6 +1,8 @@
 package com.oms.wms.configuration;
 
 import com.oms.wms.security.JWTAuthenticationFilter;
+import com.oms.wms.security.JWTGenerator;
+import com.oms.wms.service.ServiceCustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +24,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration @EnableWebSecurity @EnableMethodSecurity @RequiredArgsConstructor
 public class ConfigurationSecurity {
 
+    public final JWTGenerator jwtGenerator;
+    public final ServiceCustomUserDetails serviceCustomUserDetails;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
@@ -30,7 +35,6 @@ public class ConfigurationSecurity {
                 .exceptionHandling(Customizer.withDefaults())
                 .sessionManagement((session) -> session .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((auth) -> auth
-                    .requestMatchers(HttpMethod.GET, "/city").permitAll()
                     .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
                     .requestMatchers("/api/v1/auth/**", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
                     .anyRequest().authenticated())
@@ -51,6 +55,6 @@ public class ConfigurationSecurity {
     }
     @Bean
     public JWTAuthenticationFilter jwtAuthenticationFilter() {
-        return new JWTAuthenticationFilter();
+        return new JWTAuthenticationFilter(jwtGenerator, serviceCustomUserDetails);
     }
 }
