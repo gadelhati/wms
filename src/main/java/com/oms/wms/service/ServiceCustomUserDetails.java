@@ -3,7 +3,6 @@ package com.oms.wms.service;
 import com.oms.wms.persistence.model.Privilege;
 import com.oms.wms.persistence.model.Role;
 import com.oms.wms.persistence.model.User;
-import com.oms.wms.persistence.repository.RepositoryRole;
 import com.oms.wms.persistence.repository.RepositoryUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,7 +21,6 @@ import java.util.Objects;
 public class ServiceCustomUserDetails implements UserDetailsService {
 
     private final RepositoryUser repositoryUser;
-    private final RepositoryRole repositoryRole;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
